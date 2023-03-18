@@ -8,16 +8,17 @@ namespace _259290
 {
 
 
-    internal class Item
+    public class Item
     {
 
         public int value;
         public int weight;
-
-        public Item(int v, int w)
+        public int num;
+        public Item(int v, int w, int n)
         {
             value = v;
             weight = w;
+            num = n;
         }
 
 

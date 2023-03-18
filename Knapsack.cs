@@ -5,11 +5,25 @@ using System.Collections.Generic;
 
 namespace _259290
 {
-    internal class Knapsack
+
+
+    public class Knapsack
     {
-        List<Item> items;
-        List<Item> items2;
-        public Knapsack(int num, int seed)
+        public List<Item> items;
+        public List<Item> items2;
+
+
+        public Knapsack(int n, int []v, int[] w)
+        {
+            items = new List<Item>();
+
+            for (int i=0; i<n; i++)
+            {
+                Item item=new Item(v[i], w[i], i);
+                items.Add(item);
+            }
+        }
+    public Knapsack(int num, int seed)
         {
             items = new List<Item>();
             Random rand = new Random(seed);
@@ -19,14 +33,13 @@ namespace _259290
             {
                 int v = rand.Next(1, 9);
                 int w = rand.Next(1, 9);
-                Item item = new Item(v, w);
+                Item item = new Item(v, w, i);
                 items.Add(item);
 
 
             }
 
         }
-
 
         public int countCapacity(int capacity)
         {
@@ -45,23 +58,22 @@ namespace _259290
                 {
                     cap_tmp = cap1;
                 }
-
-
             }
-
-
-            for (int i = 0; i < items2.Count; i++)
-            {
-
-                Console.WriteLine("num: " + i + " val: " + items2[i].value + " wei: " + items2[i].weight + "\n");
-
-            }
-    
-            Console.WriteLine("Total capacity: "+ cap1);
 
             return cap1;
         }
 
+
+        public void printItems()
+        {
+
+            for (int i = 0; i < items2.Count; i++)
+            {
+
+                Console.WriteLine("num: " + items2[i].num + " val: " + items2[i].value + " wei: " + items2[i].weight + "\n");
+
+            }
+        }
 
 
         public override string ToString()

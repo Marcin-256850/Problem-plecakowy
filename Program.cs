@@ -26,8 +26,9 @@ namespace _259290
             Console.WriteLine(knapsack);
 
             Console.WriteLine("Items in knapsack: ");
-            knapsack.countCapacity(capacity);
-
+            int cap=knapsack.countCapacity(capacity);
+            knapsack.printItems();
+            Console.WriteLine("Total capacity: " + cap);
             Console.ReadLine();
         }
     }
