@@ -1,4 +1,3 @@
-﻿
 using System;
 using System.Collections.Generic;
 
@@ -12,18 +11,18 @@ namespace _259290
         public List<Item> items;
         public List<Item> items2;
 
-
-        public Knapsack(int n, int []v, int[] w)
+        public Knapsack(int n, int[] v, int[] w)
         {
             items = new List<Item>();
 
-            for (int i=0; i<n; i++)
+            for (int i = 0; i < n; i++)
             {
-                Item item=new Item(v[i], w[i], i);
+                Item item = new Item(v[i], w[i], i);
                 items.Add(item);
             }
         }
-    public Knapsack(int num, int seed)
+
+        public Knapsack(int num, int seed)
         {
             items = new List<Item>();
             Random rand = new Random(seed);
@@ -41,12 +40,12 @@ namespace _259290
 
         }
 
-        public int countCapacity(int capacity)
+        public int countCapacity(int capacity, int ilosc)
         {
             items2 = new List<Item>();
             int cap_tmp = 0;
             int cap1 = 0;
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < ilosc; i++)
             {
                 cap_tmp = cap1 + items[i].value * items[i].weight;
                 if (cap_tmp <= capacity)
