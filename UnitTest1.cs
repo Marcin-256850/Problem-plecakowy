@@ -8,34 +8,34 @@ namespace Test
     public class UnitTest1
     {
         [TestMethod]
-        public void StartingKnapsackLenght()  /*Sprawdzenie, czy jeúli co najmniej jeden przedmiot spe≥nia ograniczenia, to zwrÛcono co najmniej jeden element.*/
+        public void StartingKnapsackLenght()  /*Sprawdzenie, czy je≈õli co najmniej jeden przedmiot spe≈Çnia ograniczenia, to zwr√≥cono co najmniej jeden element.*/
         {
             Knapsack knapsack = new Knapsack(10, 10);
             Assert.AreEqual(10, knapsack.items.Count);
         }
 
         [TestMethod]
-        public void EmptySnapback()     /*Sprawdzenie, czy jeúli ani jeden przedmiot nie spe≥nia ograniczeÒ, to zwrÛcono puste rozwiπzanie.*/
+        public void EmptySnapback()     /*Sprawdzenie, czy je≈õli ani jeden przedmiot nie spe≈Çnia ogranicze≈Ñ, to zwr√≥cono puste rozwiƒÖzanie.*/
         {
             Knapsack knapsack = new Knapsack(1, 1);
-            int cap = knapsack.countCapacity(0);
+            int cap = knapsack.countCapacity(0,1);
             Assert.AreEqual(0, cap);
             Assert.IsTrue(0 == knapsack.items2.Count);
         }
 
         [TestMethod]
-        public void FillingTheKnapsack() /*Sprawdzenie, czy jeúli co najmniej jeden przedmiot spe≥nia ograniczenia, to zwrÛcono co najmniej jeden element.*/
+        public void FillingTheKnapsack() /*Sprawdzenie, czy je≈õli co najmniej jeden przedmiot spe≈Çnia ograniczenia, to zwr√≥cono co najmniej jeden element.*/
         {
             Knapsack knapsack = new Knapsack(1, 1);
-            knapsack.countCapacity(100);
+            knapsack.countCapacity(100,1);
             Assert.IsTrue(1 == knapsack.items2.Count);
         }
 
-        [TestMethod]    /*Sprawdzenie poprawnoúci liczenia pojemnoúci*/
+        [TestMethod]    /*Sprawdzenie poprawno≈õci liczenia pojemno≈õci*/
         public void countCapacityCheck()
         {
             Knapsack knapsack = new Knapsack(1, 1);
-            int cap = knapsack.countCapacity(100);
+            int cap = knapsack.countCapacity(100,1);
             int cap_tmp = knapsack.items[0].weight * knapsack.items[0].value;
             Assert.AreEqual(cap, cap_tmp);
 
@@ -44,9 +44,9 @@ namespace Test
 
         [TestMethod]
 
-        public void ItemsOrder() /*Sprawdzenie, czy kolejnoúÊ przedmiotÛw ma wp≥ywa na znalezione rozwiπzanie. (ma)*/
+        public void ItemsOrder() /*Sprawdzenie, czy kolejno≈õƒá przedmiot√≥w ma wp≈Çywa na znalezione rozwiƒÖzanie. (ma)*/
         {
-            
+
             int[] v = { 1, 1, 2 }, w = { 1, 2, 2 };
             Knapsack knapsack = new Knapsack(3, v, w);
             for (int i = 0; i < 3; i++)
@@ -55,7 +55,7 @@ namespace Test
                 knapsack.items.Add(item);
 
             }
-            int cap1 = knapsack.countCapacity(5);
+            int cap1 = knapsack.countCapacity(5, 3);
             Item item_tmp1 = knapsack.items2[1];
             Knapsack knapsack1 = new Knapsack(3, v, w);
             Item item0 = new Item(v[0], w[0], 0);
@@ -68,7 +68,7 @@ namespace Test
             knapsack1.items[2] = item1;
 
 
-            int cap2 = knapsack1.countCapacity(5);
+            int cap2 = knapsack1.countCapacity(5, 3);
             Item item_tmp2 = knapsack1.items2[1];
 
             Assert.AreNotEqual(cap1, cap2);
@@ -78,18 +78,18 @@ namespace Test
         }
 
         [TestMethod]
-        public void Solution() /*Sprawdzenie konkretnego rozwiπzania*/
+        public void Solution() /*Sprawdzenie konkretnego rozwiƒÖzania*/
         {
-       
+
             int[] v = { 1, 1, 2 }, w = { 1, 2, 2 };
             Knapsack knapsack = new Knapsack(3, v, w);
             for (int i = 0; i < 3; i++)
             {
                 Item item = new Item(v[i], w[i], i);
                 knapsack.items.Add(item);
-
             }
-            int cap1 = knapsack.countCapacity(5);
+            int cap1 = knapsack.countCapacity(5,3);
+            Console.WriteLine(cap1);
 
             Assert.AreEqual(knapsack.items[0].value, 1);
             Assert.AreEqual(knapsack.items[0].weight, 1);
@@ -103,7 +103,7 @@ namespace Test
             Assert.AreEqual(knapsack.items[2].weight, 2);
             Assert.AreEqual(knapsack.items[2].num, 2);
 
-            Assert.IsTrue(knapsack.items2[0].value==1);
+            Assert.IsTrue(knapsack.items2[0].value == 1);
             Assert.IsTrue(knapsack.items2[0].weight == 1);
             Assert.IsTrue(knapsack.items2[0].num == 0);
 
@@ -111,15 +111,12 @@ namespace Test
             Assert.IsTrue(knapsack.items2[1].weight == 2);
             Assert.IsTrue(knapsack.items2[1].num == 1);
 
-            //Assert.IsTrue(knapsack.items2[2] == null);
-
-            //Assert.AreEqual(5, cap1);
-
+            Assert.AreEqual(3, cap1);
 
         }
 
 
 
     }
-    
+
 }
