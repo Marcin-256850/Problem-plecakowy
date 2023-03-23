@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace _259290
         {
             Console.WriteLine("Enter the number of items: ");
             int n = int.Parse(Console.ReadLine());
-
+            int ilosc = n;
             Console.WriteLine("Enter the seed: ");
             int seed = int.Parse(Console.ReadLine());
 
@@ -20,13 +20,16 @@ namespace _259290
             int capacity = int.Parse(Console.ReadLine());
 
 
+
             Knapsack knapsack = new Knapsack(n, seed);
+
+
 
             Console.WriteLine("Avaliable items: ");
             Console.WriteLine(knapsack);
 
             Console.WriteLine("Items in knapsack: ");
-            int cap=knapsack.countCapacity(capacity);
+            int cap = knapsack.countCapacity(capacity,ilosc);
             knapsack.printItems();
             Console.WriteLine("Total capacity: " + cap);
             Console.ReadLine();
